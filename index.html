@@ -703,4 +703,105 @@
       <svg fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
     </a>
     <a class="social-btn" href="mailto:sacrificialconversationsshop@gmail.com" aria-label="Email" data-track="email-icon">
-      <svg fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-line
+      <svg fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+    </a>
+    <a class="social-btn" href="https://sacrificialconversations.shop" aria-label="Website" data-track="web-icon">
+      <svg fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path stroke-linecap="round" stroke-linejoin="round" d="M3 12h18M12 3a15 15 0 010 18M12 3a15 15 0 000 18"/></svg>
+    </a>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <span class="brand-mini">— Wear Your Convictions —</span>
+    <div class="footer-divider"></div>
+    © <span id="year">2026</span> Sacrificial Conversations · <a href="mailto:sacrificialconversationsshop@gmail.com">sacrificialconversationsshop@gmail.com</a>
+  </footer>
+
+</main>
+
+<script>
+(function(){
+  'use strict';
+
+  var y = document.getElementById('year');
+  if (y) y.textContent = new Date().getFullYear();
+
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('visible'); });
+  }
+
+  // Click tracking hooks (no-op until GA4 / Pixel installed)
+  document.querySelectorAll('[data-track]').forEach(function(el){
+    el.addEventListener('click', function(){
+      var label = el.getAttribute('data-track');
+      if (window.gtag) gtag('event', 'link_click', { link_label: label });
+      if (window.fbq) fbq('trackCustom', 'LinktreeClick', { label: label });
+    });
+  });
+
+  // Klaviyo newsletter signup — direct subscribe via Klaviyo Client API
+  var KLAVIYO_COMPANY_ID = 'V9Fnki';
+  var KLAVIYO_LIST_ID = 'Vziq5D';
+  var form = document.getElementById('join-the-list');
+  if (form && form.tagName === 'FORM') {
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var emailInput = form.querySelector('input[type="email"]');
+      var btn = form.querySelector('button[type="submit"]');
+      var email = (emailInput.value || '').trim();
+      if (!email || email.indexOf('@') < 1) {
+        emailInput.focus();
+        return;
+      }
+      btn.disabled = true;
+      var origLabel = btn.textContent;
+      btn.textContent = 'Sending';
+      form.classList.remove('errored');
+
+      fetch('https://a.klaviyo.com/client/subscriptions/?company_id=' + encodeURIComponent(KLAVIYO_COMPANY_ID), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'revision': '2024-10-15' },
+        body: JSON.stringify({
+          data: {
+            type: 'subscription',
+            attributes: {
+              custom_source: 'Linktree',
+              profile: { data: { type: 'profile', attributes: { email: email } } }
+            },
+            relationships: {
+              list: { data: { type: 'list', id: KLAVIYO_LIST_ID } }
+            }
+          }
+        })
+      }).then(function(resp){
+        if (resp.ok || resp.status === 202) {
+          form.classList.add('subscribed');
+          if (window.gtag) gtag('event', 'newsletter_subscribe', { source: 'linktree' });
+          if (window.fbq) fbq('trackCustom', 'NewsletterSubscribe', { source: 'linktree' });
+        } else {
+          form.classList.add('errored');
+          btn.disabled = false;
+          btn.textContent = origLabel;
+        }
+      }).catch(function(){
+        form.classList.add('errored');
+        btn.disabled = false;
+        btn.textContent = origLabel;
+      });
+    });
+  }
+})();
+</script>
+
+</body>
+</html>
