@@ -382,6 +382,45 @@
   }
 
   
+  
+  /* ==================== IN-APP BROWSER BANNER ==================== */
+  .inapp-banner {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: linear-gradient(90deg, var(--crimson-deep) 0%, var(--crimson) 50%, var(--crimson-deep) 100%);
+    color: var(--text);
+    padding: 10px 44px 10px 16px;
+    font-family: var(--sans);
+    font-size: 12.5px;
+    line-height: 1.45;
+    text-align: center;
+    border-bottom: 1px solid var(--gold);
+    animation: bannerSlide 0.5s cubic-bezier(.2,.9,.3,1);
+  }
+  @keyframes bannerSlide {
+    from { transform: translateY(-100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  .inapp-text { margin: 0; }
+  .inapp-text strong { color: var(--gold-bright); font-weight: 600; }
+  .inapp-close {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: var(--text);
+    font-size: 22px;
+    width: 32px; height: 32px;
+    cursor: pointer;
+    line-height: 1;
+    opacity: 0.85;
+    border-radius: 0;
+  }
+  .inapp-close:hover { opacity: 1; }
+
   /* ==================== PROMO MODAL ==================== */
   .modal-overlay {
     position: fixed;
@@ -793,6 +832,13 @@
 </head>
 <body>
 
+  <!-- IN-APP BROWSER NOTICE (only shows in IG/FB/TikTok webview) -->
+  <div class="inapp-banner" id="inapp-banner" hidden>
+    <p class="inapp-text">For the full experience (and working TikTok / YouTube links), open this page in <strong>Safari</strong> or <strong>Chrome</strong>.</p>
+    <button type="button" class="inapp-close" id="inapp-close" aria-label="Dismiss">x</button>
+  </div>
+
+
 <main class="container">
 
   <!-- HERO -->
@@ -818,19 +864,19 @@
   <div class="section-label reveal">Shop</div>
   <div class="links">
 
-    <a class="link-card featured reveal" href="https://sacrificialconversations.shop/collections/love-collection" data-track="love-collection">
+    <a class="link-card featured reveal" href="https://sacrificialconversations.shop/collections/love-collection" target="_blank" rel="noopener noreferrer" data-track="love-collection">
       <p class="link-eyebrow">The Love Collection</p>
       <h3 class="link-title">Premium covenant apparel</h3>
       <p class="link-sub">5 pieces · interlocking rings motif · limited run</p>
     </a>
 
-    <a class="link-card reveal" href="https://sacrificialconversations.shop/product/love-covenant-cream-hoodie" data-track="cream-hoodie">
+    <a class="link-card reveal" href="https://sacrificialconversations.shop/product/love-covenant-cream-hoodie" target="_blank" rel="noopener noreferrer" data-track="cream-hoodie">
       <p class="link-eyebrow">Hero Drop · $69 <span class="badge hero">Bestseller</span></p>
       <h3 class="link-title">LOVE Covenant Cream Hoodie</h3>
       <p class="link-sub">Heavyweight 14oz · sand · sizes S–3XL</p>
     </a>
 
-    <a class="link-card reveal" href="https://sacrificialconversations.shop/shop" data-track="shop-all">
+    <a class="link-card reveal" href="https://sacrificialconversations.shop/shop" target="_blank" rel="noopener noreferrer" data-track="shop-all">
       <p class="link-eyebrow">Full Shop</p>
       <h3 class="link-title">Browse the complete catalog</h3>
       <p class="link-sub">Apparel · accessories · headwear</p>
@@ -854,13 +900,13 @@
   <div class="section-label reveal">Listen</div>
   <div class="links">
 
-    <a class="link-card featured reveal" href="https://www.youtube.com/@SacrificialConversations" data-track="podcast-yt">
+    <a class="link-card featured reveal" href="https://www.youtube.com/@SacrificialConversations" target="_blank" rel="noopener noreferrer" data-track="podcast-yt">
       <p class="link-eyebrow">Podcast · YouTube</p>
       <h3 class="link-title">Watch every episode of the show</h3>
       <p class="link-sub">@SacrificialConversations · new drops every week</p>
     </a>
 
-    <a class="link-card accent reveal" href="https://www.tabnashville.net/tabnashville-gospel-radio" target="_blank" rel="noopener" data-track="podcast-fm">
+    <a class="link-card accent reveal" href="https://www.tabnashville.net/tabnashville-gospel-radio" target="_blank" rel="noopener noreferrer" target="_blank" rel="noopener" data-track="podcast-fm">
       <p class="link-eyebrow">Tab Nashville Gospel Radio <span class="badge live">On Air</span></p>
       <h3 class="link-title">Tune in to 104.1 FM</h3>
       <p class="link-sub">Catch the weekly broadcast · stream live on tabnashville.net</p>
@@ -872,19 +918,19 @@
   <div class="section-label reveal">Connect</div>
   <div class="links">
 
-    <a class="link-card reveal" href="https://www.instagram.com/sacrificialconversations" data-track="instagram">
+    <a class="link-card reveal" href="https://www.instagram.com/sacrificialconversations" target="_blank" rel="noopener noreferrer" data-track="instagram">
       <p class="link-eyebrow">Instagram</p>
       <h3 class="link-title">Daily faith &amp; behind the scenes</h3>
       <p class="link-sub">@sacrificialconversations</p>
     </a>
 
-    <a class="link-card reveal" href="https://www.tiktok.com/@sacrificialconversations" data-track="tiktok">
+    <a class="link-card reveal" href="https://www.tiktok.com/@sacrificialconversations" target="_blank" rel="noopener noreferrer" data-track="tiktok">
       <p class="link-eyebrow">TikTok</p>
       <h3 class="link-title">Podcast clips &amp; faith content</h3>
       <p class="link-sub">@sacrificialconversations</p>
     </a>
 
-    <a class="link-card reveal" href="https://www.youtube.com/@SacrificialConversations/videos" data-track="founder-story">
+    <a class="link-card reveal" href="https://www.youtube.com/@SacrificialConversations/videos" target="_blank" rel="noopener noreferrer" data-track="founder-story">
       <p class="link-eyebrow">The Founders</p>
       <h3 class="link-title">Meet Teddy &amp; Monica</h3>
       <p class="link-sub">Watch them on the podcast · the marriage, the mission, the brand</p>
@@ -903,7 +949,7 @@
         <p class="link-sub">Wholesale · collabs · podcast guest requests</p>
       </a>
 
-      <a class="link-card reveal" href="https://www.instagram.com/sacrificialconversations" data-track="ugc">
+      <a class="link-card reveal" href="https://www.instagram.com/sacrificialconversations" target="_blank" rel="noopener noreferrer" data-track="ugc">
         <p class="link-eyebrow">Community</p>
         <h3 class="link-title">Tag us in your drip</h3>
         <p class="link-sub">Tag @sacrificialconversations on IG to be reposted</p>
@@ -914,19 +960,19 @@
 
   <!-- Social row -->
   <div class="socials reveal" aria-label="Social media">
-    <a class="social-btn" href="https://www.instagram.com/sacrificialconversations" aria-label="Instagram" data-track="ig-icon">
+    <a class="social-btn" href="https://www.instagram.com/sacrificialconversations" target="_blank" rel="noopener noreferrer" aria-label="Instagram" data-track="ig-icon">
       <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.849.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849s-.012 3.584-.069 4.849c-.149 3.227-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.849.07s-3.584-.012-4.849-.07c-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849s.013-3.583.07-4.849C2.381 3.924 3.896 2.38 7.151 2.232 8.417 2.175 8.796 2.163 12 2.163zm0-2.163C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
     </a>
-    <a class="social-btn" href="https://www.tiktok.com/@sacrificialconversations" aria-label="TikTok" data-track="tt-icon">
+    <a class="social-btn" href="https://www.tiktok.com/@sacrificialconversations" target="_blank" rel="noopener noreferrer" aria-label="TikTok" data-track="tt-icon">
       <svg fill="currentColor" viewBox="0 0 24 24"><path d="M19.321 5.562a5.124 5.124 0 01-3.03-1.07 5.124 5.124 0 01-1.789-3.442h-3.194v12.844c0 1.55-1.259 2.81-2.81 2.81a2.81 2.81 0 112.81-2.81V9.73a6.005 6.005 0 00-6.005 6.005c0 3.317 2.689 6.005 6.005 6.005s6.005-2.688 6.005-6.005V8.965c1.182.853 2.59 1.353 4.108 1.353V7.124c-.711 0-1.392-.123-2.029-.351a5.115 5.115 0 01-1.071-1.211z"/></svg>
     </a>
-    <a class="social-btn" href="https://www.youtube.com/@SacrificialConversations" aria-label="YouTube" data-track="yt-icon">
+    <a class="social-btn" href="https://www.youtube.com/@SacrificialConversations" target="_blank" rel="noopener noreferrer" aria-label="YouTube" data-track="yt-icon">
       <svg fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
     </a>
     <a class="social-btn" href="mailto:sacrificialconversationsshop@gmail.com" aria-label="Email" data-track="email-icon">
       <svg fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
     </a>
-    <a class="social-btn" href="https://sacrificialconversations.shop" aria-label="Website" data-track="web-icon">
+    <a class="social-btn" href="https://sacrificialconversations.shop" target="_blank" rel="noopener noreferrer" aria-label="Website" data-track="web-icon">
       <svg fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path stroke-linecap="round" stroke-linejoin="round" d="M3 12h18M12 3a15 15 0 010 18M12 3a15 15 0 000 18"/></svg>
     </a>
   </div>
@@ -963,7 +1009,7 @@
         <p class="modal-copy-hint">Tap to copy</p>
         <p class="modal-success-msg">Welcome to the covenant.</p>
         <p class="modal-success-sub">10% off at checkout. Sent to your inbox too.</p>
-        <a class="modal-cta" href="https://sacrificialconversations.shop/collections/love-collection" data-track="modal-shop-cta">Shop the collection</a>
+        <a class="modal-cta" href="https://sacrificialconversations.shop/collections/love-collection" target="_blank" rel="noopener noreferrer" data-track="modal-shop-cta">Shop the collection</a>
       </div>
     </div>
   </div>
@@ -973,6 +1019,18 @@
 <script>
 (function(){
   'use strict';
+
+  // In-app browser detection (Instagram, Facebook, TikTok webviews block app-to-app deeplinks)
+  (function(){
+    var ua = navigator.userAgent || '';
+    var isInAppBrowser = /Instagram|FBAN|FBAV|FB_IAB|FB4A|FBIOS|TikTok|Twitter|Snapchat/i.test(ua);
+    var banner = document.getElementById('inapp-banner');
+    if (banner && isInAppBrowser) {
+      banner.hidden = false;
+      var close = document.getElementById('inapp-close');
+      if (close) close.addEventListener('click', function(){ banner.hidden = true; });
+    }
+  })();
 
   var y = document.getElementById('year');
   if (y) y.textContent = new Date().getFullYear();
