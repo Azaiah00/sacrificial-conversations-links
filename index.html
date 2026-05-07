@@ -5,15 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <meta name="theme-color" content="#050505" />
 <meta name="description" content="Sacrificial Conversations — The podcast and the apparel. Faith. Marriage. Sacrifice. Listen, watch, and wear your convictions." />
-<link rel="canonical" href="https://sacrificialconversations.shop/links" />
+<link rel="canonical" href="https://sacrificialconversations.netlify.app/" />
 
 <!-- Open Graph / rich previews when shared -->
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://sacrificialconversations.shop/links" />
+<meta property="og:url" content="https://sacrificialconversations.netlify.app/" />
 <meta property="og:title" content="Sacrificial Conversations — Wear Your Convictions" />
 <meta property="og:description" content="The podcast and the apparel. Faith · Marriage · Sacrifice. Listen on YouTube + 104.1 FM. Shop the Love Collection." />
 <meta property="og:site_name" content="Sacrificial Conversations" />
-<meta property="og:image" content="https://sacrificialconversations.shop/og-linktree.jpg" />
+<meta property="og:image" content="https://sacrificialconversations.netlify.app/og-linktree.jpg" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 
@@ -21,7 +21,7 @@
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Sacrificial Conversations — Wear Your Convictions" />
 <meta name="twitter:description" content="The podcast and the apparel. Faith · Marriage · Sacrifice. Listen + Shop." />
-<meta name="twitter:image" content="https://sacrificialconversations.shop/og-linktree.jpg" />
+<meta name="twitter:image" content="https://sacrificialconversations.netlify.app/og-linktree.jpg" />
 
 <!-- Apple touch icon -->
 <link rel="apple-touch-icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect width='180' height='180' fill='%23050505'/><text x='90' y='118' font-family='Georgia,serif' font-size='84' font-weight='400' fill='%23ffffff' text-anchor='middle'>SC</text></svg>" />
@@ -41,7 +41,7 @@
   "@type": "Organization",
   "name": "Sacrificial Conversations",
   "url": "https://sacrificialconversations.shop",
-  "image": "https://sacrificialconversations.shop/og-linktree.jpg",
+  "image": "https://sacrificialconversations.netlify.app/og-linktree.jpg",
   "description": "A podcast and apparel brand built on faith, marriage, and sacrifice. Hosted by Teddy & Monica.",
   "sameAs": [
     "https://www.instagram.com/sacrificialconversations",
@@ -381,6 +381,227 @@
     50% { opacity: 0.55; }
   }
 
+  
+  /* ==================== PROMO MODAL ==================== */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(5,5,5,0.78);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s cubic-bezier(.2,.9,.3,1);
+  }
+  .modal-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .modal-dialog {
+    position: relative;
+    width: 100%;
+    max-width: 460px;
+    background: linear-gradient(165deg, #0E0E0E 0%, #1a0608 60%, #0a0203 100%);
+    border: 1px solid var(--crimson-deep);
+    box-shadow:
+      0 20px 60px rgba(0,0,0,0.6),
+      0 0 80px rgba(163,8,20,0.18),
+      inset 0 1px 0 rgba(201,161,74,0.18);
+    padding: 44px 32px 36px;
+    transform: translateY(20px) scale(0.96);
+    transition: transform 0.45s cubic-bezier(.2,.9,.3,1.2);
+    overflow: hidden;
+  }
+  .modal-overlay.open .modal-dialog {
+    transform: translateY(0) scale(1);
+  }
+  .modal-dialog::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--crimson-bright), var(--gold-bright), var(--crimson-bright), transparent);
+  }
+  .modal-close {
+    position: absolute;
+    top: 14px; right: 16px;
+    width: 32px; height: 32px;
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--text-muted);
+    font-family: var(--sans);
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: grid;
+    place-items: center;
+    border-radius: 0;
+  }
+  .modal-close:hover {
+    color: var(--gold-bright);
+    border-color: rgba(201,161,74,0.4);
+  }
+  .modal-eyebrow {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.32em;
+    color: var(--gold-bright);
+    text-transform: uppercase;
+    margin: 0 0 14px 0;
+  }
+  .modal-title {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(36px, 8vw, 48px);
+    line-height: 1;
+    letter-spacing: -0.025em;
+    color: var(--text);
+    margin: 0 0 18px 0;
+  }
+  .modal-sub {
+    font-family: var(--sans);
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--text-muted);
+    margin: 0 0 26px 0;
+  }
+  .modal-form { display: block; }
+  .modal-email {
+    width: 100%;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--line);
+    color: var(--text);
+    padding: 14px 16px;
+    font-family: var(--sans);
+    font-size: 15px;
+    transition: border-color 0.2s, background 0.2s;
+    border-radius: 0;
+    outline: none;
+    -webkit-appearance: none;
+    box-sizing: border-box;
+  }
+  .modal-email::placeholder { color: var(--text-dim); }
+  .modal-email:focus {
+    border-color: var(--gold);
+    background: rgba(255,255,255,0.06);
+  }
+  .modal-submit {
+    width: 100%;
+    margin-top: 12px;
+    background: var(--crimson);
+    color: var(--text);
+    border: 1px solid var(--crimson);
+    padding: 16px 22px;
+    font-family: var(--display);
+    font-size: 13px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-radius: 0;
+    font-weight: 500;
+  }
+  .modal-submit:hover {
+    background: var(--crimson-bright);
+    border-color: var(--crimson-bright);
+  }
+  .modal-submit:disabled { opacity: 0.6; cursor: wait; }
+  .modal-error {
+    display: none;
+    margin: 14px 0 0 0;
+    font-size: 13px;
+    color: var(--crimson-bright);
+    font-family: var(--sans);
+  }
+  .modal-dialog.errored .modal-error { display: block; }
+  .modal-state-success {
+    display: none;
+    text-align: center;
+  }
+  .modal-dialog.subscribed .modal-state-initial { display: none; }
+  .modal-dialog.subscribed .modal-state-success { display: block; }
+  .modal-state-success .modal-eyebrow {
+    color: var(--text-muted);
+    margin-bottom: 12px;
+  }
+  .modal-code {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: clamp(48px, 12vw, 72px);
+    line-height: 1;
+    letter-spacing: 0.12em;
+    color: var(--gold-bright);
+    margin: 0 0 8px 0;
+    cursor: pointer;
+    user-select: all;
+    transition: color 0.2s;
+    display: inline-block;
+    padding: 8px 18px;
+    border: 1px dashed rgba(201,161,74,0.4);
+  }
+  .modal-code:hover {
+    color: #FFFFFF;
+    border-color: var(--gold-bright);
+  }
+  .modal-copy-hint {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin: 0 0 22px 0;
+  }
+  .modal-success-msg {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 17px;
+    color: var(--text);
+    line-height: 1.4;
+    margin: 0 0 8px 0;
+  }
+  .modal-success-sub {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--text-muted);
+    margin: 0 0 26px 0;
+  }
+  .modal-cta {
+    display: inline-block;
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--gold);
+    padding: 13px 28px;
+    text-decoration: none;
+    font-family: var(--display);
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: all 0.25s;
+  }
+  .modal-cta:hover {
+    background: var(--gold);
+    color: var(--ink);
+    border-color: var(--gold);
+  }
+
+  /* Lock body scroll when modal open */
+  body.modal-open { overflow: hidden; }
+
+  @media (max-width: 420px) {
+    .modal-dialog { padding: 36px 22px 28px; }
+    .modal-title { font-size: 34px; }
+    .modal-code { font-size: 44px; padding: 6px 14px; }
+  }
+
   /* ==================== EMAIL FORM CARD ==================== */
   .form-card {
     display: block;
@@ -585,13 +806,13 @@
   </header>
 
   <!-- PROMO -->
-  <a class="promo reveal" href="#join-the-list" data-track="welcome-offer" aria-label="Join the list for 10% off your first order">
+  <button type="button" class="promo reveal" id="promo-trigger" data-track="welcome-offer" aria-label="Join the list for 10% off your first order">
     <div class="promo-text">
       <p class="promo-label">Welcome offer</p>
       <p class="promo-msg"><strong>10% off</strong> your first order</p>
     </div>
     <span class="promo-code">COVENANT</span>
-  </a>
+  </button>
 
   <!-- ====== SHOP ====== -->
   <div class="section-label reveal">Shop</div>
@@ -717,6 +938,36 @@
     © <span id="year">2026</span> Sacrificial Conversations · <a href="mailto:sacrificialconversationsshop@gmail.com">sacrificialconversationsshop@gmail.com</a>
   </footer>
 
+
+  <!-- PROMO MODAL -->
+  <div class="modal-overlay" id="promo-modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-dialog" role="document">
+      <button type="button" class="modal-close" id="modal-close" aria-label="Close">×</button>
+
+      <!-- Initial state -->
+      <div class="modal-state-initial">
+        <p class="modal-eyebrow">Welcome offer</p>
+        <h2 class="modal-title">10% off your first order</h2>
+        <p class="modal-sub">Drop your email and we'll show you the code right now. We'll also send a welcome note to your inbox.</p>
+        <form class="modal-form" id="modal-promo-form" novalidate>
+          <input type="email" class="modal-email" id="modal-email-input" placeholder="your@email.com" required aria-label="Email address" autocomplete="email" />
+          <button type="submit" class="modal-submit">Send me the code</button>
+          <p class="modal-error" role="alert">Hmm, something went wrong. Try again?</p>
+        </form>
+      </div>
+
+      <!-- Success state -->
+      <div class="modal-state-success">
+        <p class="modal-eyebrow">Your code</p>
+        <p class="modal-code" id="modal-code-display" title="Click to copy">COVENANT</p>
+        <p class="modal-copy-hint">Tap to copy</p>
+        <p class="modal-success-msg">Welcome to the covenant.</p>
+        <p class="modal-success-sub">10% off at checkout. Sent to your inbox too.</p>
+        <a class="modal-cta" href="https://sacrificialconversations.shop/collections/love-collection" data-track="modal-shop-cta">Shop the collection</a>
+      </div>
+    </div>
+  </div>
+
 </main>
 
 <script>
@@ -795,6 +1046,114 @@
         }
       }).catch(function(){
         form.classList.add('errored');
+        btn.disabled = false;
+        btn.textContent = origLabel;
+      });
+    });
+  }
+
+  // Promo modal — open on promo-trigger click, submit to Klaviyo, show code instantly
+  var modal = document.getElementById('promo-modal');
+  var modalDialog = modal ? modal.querySelector('.modal-dialog') : null;
+  var promoTrigger = document.getElementById('promo-trigger');
+  var modalClose = document.getElementById('modal-close');
+  var modalForm = document.getElementById('modal-promo-form');
+  var modalCode = document.getElementById('modal-code-display');
+
+  function openModal() {
+    if (!modal) return;
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('modal-open');
+    setTimeout(function(){
+      var emailInput = document.getElementById('modal-email-input');
+      if (emailInput) emailInput.focus();
+    }, 350);
+  }
+  function closeModal() {
+    if (!modal) return;
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('modal-open');
+  }
+
+  if (promoTrigger) {
+    promoTrigger.addEventListener('click', function(e){
+      e.preventDefault();
+      openModal();
+    });
+  }
+  if (modalClose) modalClose.addEventListener('click', closeModal);
+  if (modal) {
+    modal.addEventListener('click', function(e){
+      if (e.target === modal) closeModal();
+    });
+  }
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && modal && modal.classList.contains('open')) closeModal();
+  });
+
+  // Click-to-copy COVENANT code
+  if (modalCode) {
+    modalCode.addEventListener('click', function(){
+      try {
+        navigator.clipboard.writeText('COVENANT').then(function(){
+          var hint = modalCode.nextElementSibling;
+          if (hint && hint.classList.contains('modal-copy-hint')) {
+            var orig = hint.textContent;
+            hint.textContent = 'Copied!';
+            setTimeout(function(){ hint.textContent = orig; }, 1600);
+          }
+        });
+      } catch (err) {
+        // older browsers — selection fallback handled by user-select: all
+      }
+    });
+  }
+
+  // Modal form submit — same Klaviyo subscribe, then flip to success state
+  if (modalForm) {
+    modalForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      var emailInput = document.getElementById('modal-email-input');
+      var btn = modalForm.querySelector('button[type="submit"]');
+      var email = (emailInput.value || '').trim();
+      if (!email || email.indexOf('@') < 1) {
+        emailInput.focus();
+        return;
+      }
+      btn.disabled = true;
+      var origLabel = btn.textContent;
+      btn.textContent = 'Sending';
+      modalDialog.classList.remove('errored');
+
+      fetch('https://a.klaviyo.com/client/subscriptions/?company_id=' + encodeURIComponent(KLAVIYO_COMPANY_ID), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'revision': '2024-10-15' },
+        body: JSON.stringify({
+          data: {
+            type: 'subscription',
+            attributes: {
+              custom_source: 'Linktree-Promo-Modal',
+              profile: { data: { type: 'profile', attributes: { email: email } } }
+            },
+            relationships: {
+              list: { data: { type: 'list', id: KLAVIYO_LIST_ID } }
+            }
+          }
+        })
+      }).then(function(resp){
+        if (resp.ok || resp.status === 202) {
+          modalDialog.classList.add('subscribed');
+          if (window.gtag) gtag('event', 'newsletter_subscribe', { source: 'linktree-promo-modal' });
+          if (window.fbq) fbq('trackCustom', 'NewsletterSubscribe', { source: 'linktree-promo-modal' });
+        } else {
+          modalDialog.classList.add('errored');
+          btn.disabled = false;
+          btn.textContent = origLabel;
+        }
+      }).catch(function(){
+        modalDialog.classList.add('errored');
         btn.disabled = false;
         btn.textContent = origLabel;
       });
